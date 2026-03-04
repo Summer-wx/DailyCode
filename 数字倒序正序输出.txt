@@ -1,0 +1,32 @@
+//输入12345
+/*输出5
+1 2 3 4 5 
+54321
+*/
+#include<stdio.h>
+#include<math.h>
+int main(){
+	int a,b,c,i,k=0;
+	scanf("%d",&a);
+	b=a;
+	c=a;
+	while(b){
+		b/=10;
+		k++;
+	}
+	printf("%d\n",k);
+	int m[k];
+	for(i=0;i<k;i++){
+		m[i]=c%10;
+		c/=10;
+	}
+	for(i=k-1;i>=0;i--){
+        	if(i==0){printf("%d",m[i]);}
+        	else{printf("%d ",m[i]);}
+	}
+	printf("\n");
+	for(i=0;i<k;i++){
+		printf("%d",m[i]);
+	}
+	return 0;
+}
