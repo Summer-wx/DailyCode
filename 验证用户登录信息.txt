@@ -1,0 +1,24 @@
+import java.util.Scanner;
+public class work {
+    public static void main(String[] args){
+    Scanner in=new Scanner(System.in);
+        for (int i = 3; i >= 1 ; i--) {
+            System.out.print("请输入用户名:");
+            String name=in.next();
+            System.out.print("请输入密码：");
+            int password=in.nextInt();
+            if(name.equals("zhangsan") && password == 123456) {
+                System.out.println("登陆成功！");
+                break;
+            }
+            else {
+                if(i != 1) {
+                    System.out.println("登录失败，你还有"+(i-1)+"次机会");
+                }
+                else {
+                    System.out.println("输入错误达到3次，程序退出");
+                }
+            }
+        }
+    }
+}
