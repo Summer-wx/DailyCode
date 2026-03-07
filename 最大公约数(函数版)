@@ -1,0 +1,15 @@
+#include<stdio.h>
+int max_gongyueshu(int x,int y){
+	int i;
+	for(i=x;i>=2;i--){
+		if(x%i==0 && y%i==0) return i;
+	}
+
+}
+
+int main(){
+	int m,n;
+	scanf("%d %d",&m,&n);
+	printf("gcd=%d",max_gongyueshu(m,n));
+	return 0;
+}
