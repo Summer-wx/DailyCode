@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[])
+{
+    int week[]={7,1,2,3,4,5,6};
+    int w,n,d;
+    scanf("%d",&w);
+    scanf("%d",&n);
+    n=n%7;
+    w=(w+n)%7;
+    d=week[w];
+    printf("%d",d);
+  return 0;
+}
