@@ -1,0 +1,29 @@
+import java.util.Scanner;
+public class cpt2_2 {
+    public static void main (String[] args){
+        Scanner in = new Scanner(System.in);
+        int a, b, c;
+        System.out.printf("请输入三角形三边:");
+        a = in.nextInt();
+        b = in.nextInt();
+        c = in.nextInt();
+        if(a+b>c || b+c>a || a+c>b){
+            System.out.println("可以构成三角形");
+            if(a*a+b*b==c*c && a*a+c*c==b*b && c*c+b*b==a*a){
+                System.out.println("组成的是直角三角形");
+            }
+            else if(a==b && b==c && c==a){
+                System.out.println("组成的是等边三角形");
+            }
+            else if (a==b || b==c || c==a){
+                System.out.println("组成的是等腰三角形");
+            }
+            else {
+                System.out.println("组成的是一般三角形");
+            }
+        }
+        else {
+            System.out.println("a="+a+" b="+b+" c="+c);
+        }
+    }
+}
