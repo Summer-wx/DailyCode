@@ -1,0 +1,14 @@
+#include<stdio.h>
+int main(){
+	int A,B,n,k=20;
+	scanf("%d %d",&A,&B);
+	printf("%d/%d=%d.",A,B,A/B);
+	n=A%B;
+	while(k>0 && n!=0){
+		n*=10;
+		printf("%d",n/B);
+		n=n%B;
+		k--;
+	}
+	return 0;
+}
