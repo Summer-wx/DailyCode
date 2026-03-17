@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<math.h>
+int main(){
+	int xb,yb,xc,yc,count=0,i,j;
+	int Axis[21][21]={0};
+	scanf("%d %d %d %d",&xb,&yb,&xc,&yc);
+	xb++;
+	yb++;
+	xc++;
+	yc++;
+	//避免数组下标为0的边界不符
+	//因为只能向下和向右，应用Axis[i][j]=Axis[i][j-1]+Axis[i-1][j],最终加到B点的值，即为路径的条数
+	Axis[1][1]=1;
+	for(i=0;i<xb;i++){
+		for(j=0;j<yb;j++){
+			if((abs(i-xc)+abs(j-yc)==3 && (i!=xc) && (j!=yc)) ||(i==xc && j==yc)){
+					continue;
+			}
+			else {
+				Axis[i][j]=Axis[i][j-1]+Axis[i-1][j];
+			}
+		}
+	}
+	printf("%d",Axis[xb][yb]);
+	return 0;
+}
