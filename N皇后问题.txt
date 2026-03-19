@@ -1,0 +1,45 @@
+#include<stdio.h>
+int main(){
+	int n,flag=0;
+	int yAxis[20]={0};//表示第n行的皇后所放的列数
+	int row=1;
+	scanf("%d",&n);
+	//执行到yAxis[1]=5结束，共170次
+	while(row>0){
+		yAxis[row]++;
+		//如果当前行所有的列都试完了，就回溯到上一行
+		if(yAxis[row]>n){
+			row--;
+			continue;
+		}
+		int safety=1;//检查当前位置是否安全
+		for(int i=1;i<row;i++){
+			if(yAxis[i]==yAxis[row] || yAxis[i]-i==yAxis[row]-row || yAxis[i]+i==yAxis[row]+row){
+				//不同列                  不处于对角线\                   不处于对角线/
+				safety=0;
+				break;
+			}
+		}
+		if(safety){
+			if(row==n){//已经放完最后一行，解法加一
+				for(int i=1;i<=n;i++){
+					printf("%d ",yAxis[i]);
+				}
+				printf("\n");
+				flag=1;
+				row--;
+			}
+			else{
+				//还没放完，去下一行
+				row++;
+				yAxis[row]=0;//新的一行从0开始
+			}
+		}
+		//不安全则继续尝试当前行的下一列
+	}
+	//如果解法为0，返回无方案
+	if(flag==0){
+		printf("no solute!");  
+	}
+	return 0;
+}
