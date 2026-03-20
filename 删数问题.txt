@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<string.h>
+int main(){
+	int s,i,j,k;
+	char n[240];
+	char min;
+	scanf("%s",&n);
+	scanf("%d",&s);
+	for(j=0;j<strlen(n)-s;j++){
+		min='9';
+		for(i=0;i<strlen(n);i++){
+			if(n[i]<min){
+				if(j==0 && n[i]=='0') continue;
+				else if(n[i]!='a'){
+					min=n[i];
+					k=i;
+				}
+			}
+		}
+		n[k]='a';
+		printf("%c",min);
+	}
+	return 0;
+}
