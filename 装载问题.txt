@@ -1,0 +1,30 @@
+#include<stdio.h>
+int main(){
+	int n,c,t,w[1000];
+	int i,j;
+	scanf("%d %d",&n,&c);
+	for(i=0;i<n;i++){
+		scanf("%d",&w[i]);
+	}
+	for(i=0;i<n-1;i++){
+		for(j=i+1;j<n;j++){
+			if(w[i]<w[j]){
+				t=w[i];
+				w[i]=w[j];
+				w[j]=t;
+			}
+		}
+	}
+	int max=0,sum;
+	for(i=0;i<n-1;i++){
+		sum=w[i];
+		for(j=i+1;j<n;j++){
+			if(sum+w[j]<=c){
+				sum+=w[j];
+			}
+		}
+		if(sum>max) max=sum;
+	}
+	printf("%d",max);
+	return 0;
+}
