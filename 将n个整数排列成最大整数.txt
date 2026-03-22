@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+//strcat(a,b)的功能是将字符串b连接到字符串a的末尾
+int main(){
+	int n,i,j;
+	char num[20][10];//第一个维度20代表可以存20个数字，第二个维度10表示每个数字最长9位
+	//而num[20]表示只能存一个字符串，最长长度为20
+	char temp[100];//一个空字符串，用于交换
+	scanf("%d",&n);
+	for(i=0;i<n;i++){
+		scanf("%s",&num[i]);
+	}
+	for(i=0;i<n-1;i++){
+		for(j=i+1;j<n;j++){
+			char a[20],b[20];
+			strcpy(a,num[i]);
+			strcat(a,num[j]);
+			strcpy(b,num[j]);
+			strcat(b,num[i]);
+			//如果a比b小,交换ab
+			if(strcmp(a,b)<0){
+				strcpy(temp,num[i]);
+				strcpy(num[i],num[j]);
+				strcpy(num[j],temp);
+			}
+		}
+	}
+	for(i=0;i<n;i++){
+		printf("%s",num[i]);
+	}
+	return 0;
+}
