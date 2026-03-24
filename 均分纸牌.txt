@@ -1,0 +1,34 @@
+#include<stdio.h>
+int main(){
+	int n,i,a[100],count=0,sum=0;
+	scanf("%d",&n);
+	for(i=0;i<n;i++){
+		scanf("%d",&a[i]);
+		sum+=a[i];
+	}
+	int aver=sum/n;
+	for(i=0;i<n;i++){
+		a[i]-=aver;//差值数组 如[0,-1,-2,3]，计算每个值为0的移动次数即可，负数合法
+	}
+	for(i=0;i<n-1;i++){
+		if(a[i]!=0){
+			a[i+1]+=a[i];
+			count++;
+			a[i]=0;
+		}
+	}
+	printf("%d",count);
+	return 0;
+}
+/*中间会出现非法情况，a如果代表真正的牌，则其中的数不能小于0
+for(i=0;i<n-1;i++){
+	if(a[i]>aver) {
+		a[i+1]+=a[i]-aver;
+		count++;
+	}
+	if(a[i+1]>aver) {
+		a[i]=aver;
+		a[i+1]-=(aver-a[i]);
+		count++;
+	}
+}*/
