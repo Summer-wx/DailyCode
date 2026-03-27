@@ -1,0 +1,37 @@
+#include <stdio.h>
+int main() {
+    int N,K,i,op;
+    long long arr[10000];
+    scanf("%d %d", &N, &K);
+    for (i=0;i<N;i++) {
+        scanf("%lld", &arr[i]);
+    }
+    int len = N;  // 当前数组长度
+    // 执行K次操作
+    for (op = 0; op < K; op++) {
+        // 1. 找最小值的位置
+        int minPos = 0;
+        for (i = 1; i < len; i++) {
+            if (arr[i] < arr[minPos]) {
+                minPos = i;
+            }
+        }
+        // 2. 相邻元素加上最小值
+        if (minPos > 0) {
+            arr[minPos - 1] += arr[minPos];
+        }
+        if (minPos < len - 1) {
+            arr[minPos + 1] += arr[minPos];
+        }   
+        // 3. 删除元素（后面的元素往前移动）
+        for (i = minPos; i < len - 1; i++) {
+            arr[i] = arr[i + 1];
+        }
+        len--;  // 数组长度减1
+    }
+    // 输出
+    for (i = 0; i < len; i++) {
+        printf("%lld ", arr[i]);
+    }
+    return 0;
+}
