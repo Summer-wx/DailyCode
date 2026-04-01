@@ -1,0 +1,27 @@
+#include<stdio.h>
+// 数字字符串长10000，不能出现0，必须有3和7，求出数量对10^9+7取余后的结果 
+//定义一个函数，表示 a^b对mod取余 
+//结果为 9^n+2*8^n-7^n 
+//容斥原理+快速幂取模 
+long long pow(long long a,long long b,long long mod){
+	long long num=1;
+	//利用二进制拆分指数，如果指数为奇数，将其变为偶数再取模 
+	while(b>0){
+		if(b%2==1){
+			num=(num*a)%mod;
+		}
+		a=(a*a)%mod;
+		b/=2;
+	}
+	return num;
+}
+int main(){
+	int n=10000,a,b,c;
+	long long mod=10e9+7;
+	a=pow(9,n,mod);
+	b=pow(8,n,mod);
+	c=pow(7,n,mod);
+	long long result=(a+2*b-c+2*mod)%mod;//+2mod防止括号内为负数，也可以用判断来写
+	printf("%lld",result); 
+	return 0;
+}
