@@ -1,0 +1,29 @@
+#include<stdio.h>
+//长L 重量W，为其分组，满足i<j,Li<=Lw,Wi<=Wj
+int main(){
+	int W[1000],L[1000],N;
+	int i,j;
+	int t,count=1;
+	scanf("%d",&N);
+	for(i=0;i<N;i++){
+		scanf("%d",&L[i]);
+		scanf("%d",&W[i]);
+	}
+	for(i=0;i<N-1;i++){
+		for(j=i+1;j<N;j++){
+			if(L[i]<L[j]){
+				t=L[i];
+				L[i]=L[j];
+				L[j]=t;
+				t=W[i];
+				W[i]=W[j];
+				W[j]=t;
+			}
+		}
+	}
+	for(i=0;i<N-1;i++){
+		if(L[i]<=L[i+1] || W[i]<=W[i+1]) count++;
+	}
+	printf("%d",count);
+	return 0;
+}
