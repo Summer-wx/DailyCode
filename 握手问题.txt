@@ -1,0 +1,11 @@
+#include<stdio.h>
+//握手问题50个人，最后7个人没有相互握手 
+int main(){
+	int sum=0;
+	int i;
+	for(i=7;i<=49;i++){
+		sum+=i;
+	}
+	printf("%d",sum);
+	return 0;
+}
