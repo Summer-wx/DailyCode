@@ -1,0 +1,75 @@
+#include<stdio.h>
+#include<string.h>
+//BFS广度优先搜索 ，是一种图/树的遍历算法  队列 
+int map[12][12], qx[200], qy[200];
+int BFS(int x, int y)
+{
+    const int gx[4]={0, 0, 1, -1};//用const修饰的变量，在运行过程不可以被修改 
+    const int gy[4]={1, -1, 0, 0};
+    int head=1,tail=0,tx,ty,i,count=0;
+    map[x][y] = -1;
+    qx[head] = x;
+    qy[head] = y;
+    
+    for(; head != tail; ){
+        count++;
+        tail++;
+        tx=qx[tail];
+        ty=qy[tail];
+        
+        for(i=0;i<4;i++){
+            int nx = tx + gx[i];
+            int ny = ty + gy[i];
+            
+            if (-1 == map[nx][ny]) continue;
+        	
+            map[nx][ny] = -1;
+            head++;
+            qx[head] = nx;
+            qy[head] = ny;
+        }
+    }
+    return count;
+}
+
+int main(void)
+{
+    int i, j, ans = 0;
+    //初始化地图为-1 
+    memset(map, 255, sizeof(map));
+    for(i=1;i<=10;i++){
+        for(j=1;j<=10;j++){
+            scanf("%d",&map[i][j]);
+            map[i][j] = -map[i][j];
+        }
+    }
+    
+    for (i = 1; i <= 10; i++){
+        if (0 == map[i][1]) BFS(i, 1);
+        if (0 == map[i][10]) BFS(i, 10);
+        if (0 == map[1][i]) BFS(1, i);
+        if (0 == map[10][i]) BFS(10, i);
+    }
+    
+    for (i = 1; i <= 10; i++){
+        for (j = 1; j <= 10; j++){
+            if (0 == map[i][j]) ans++;
+        }
+    }
+    
+    printf("%d\n", ans);
+    return 0;
+}
+/*
+0 0 0 0 0 0 0 0 0 0
+0 0 0 0 1 1 1 0 0 0
+0 0 0 0 1 0 0 1 0 0
+0 0 0 0 0 1 0 0 1 0
+0 0 1 0 0 0 1 0 1 0
+0 1 0 1 0 1 0 0 1 0 
+0 1 0 0 1 1 0 1 1 0
+0 0 1 0 0 0 0 1 0 0
+0 0 0 1 1 1 1 1 0 0
+0 0 0 0 0 0 0 0 0 0
+15
+*/
