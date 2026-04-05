@@ -1,0 +1,17 @@
+#include<stdio.h>
+#include<math.h>
+//拼图游戏 2*2 7385137888721个
+//         1*1 10470245个
+//最大能拼成边长为多少的正方形 
+int main(){
+	long long int n;
+	n=7385137888721*4+10470245;
+	while(n--){
+		long long int s=sqrt(n);
+		if(s*s==n) {
+			printf("%lld",s);
+			break;
+		}
+	}
+	return 0;
+}
