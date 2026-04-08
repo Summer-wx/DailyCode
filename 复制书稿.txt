@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<string.h>
+int m,k;//m本书k个人 
+int a[501],b[501];
+int arr[501][501];
+int max(int a,int b){
+	return a>b?a:b;
+}
+int min(int a,int b){
+	return a<b?a:b;
+}
+void print(int x,int index){
+	if(index==0) return ;
+	if(index==1){
+		printf("1 %d\n",x);
+		return ;
+	}
+	int t=x,p=a[x];
+	while(t>1 && p+a[t-1]<=arr[k][m]){
+		p+=a[t-1];
+		t--;
+	}
+	print(t-1,index-1);
+	printf("%d %d\n",t,x);
+}
+int main(){
+	memset(arr,0x3f,sizeof(arr));//初始化arr使它无限大方便后面求最小值 
+	scanf("%d %d",&m,&k);
+	int i,j,t;
+	for(i=1;i<=m;i++){
+		scanf("%d",&a[i]);
+		b[i]=b[i-1]+a[i];
+		arr[1][i]=b[i]; 
+	}
+	for(i=2;i<=k;i++){
+		for(j=1;j<=m;j++){
+			for(t=1;t<j;t++){
+				arr[i][j]=min(arr[i][j],max(arr[i-1][t],b[j]-b[t]));
+			}
+		}
+	}
+	print(m,k);
+	return 0;
+}
+/*
+9 3
+1 2 3 4 5 6 7 8 9
+*/
