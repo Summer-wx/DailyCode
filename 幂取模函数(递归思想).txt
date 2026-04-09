@@ -1,0 +1,17 @@
+#include<stdio.h>
+long long power(long long a,long long b,long long mod){
+	if(b==0) return 1;
+	long long half=power(a,b/2,mod);
+	long long result=(half*half)%mod;
+	if(b%2==1) result=(result*2)%mod;
+	return result;
+} 
+int main(){
+	long long a,b,mod;
+	a=9;
+	b=100;
+	mod=5;
+	long long t=power(a,b,mod);
+	printf("%d",t);
+	return 0;
+}
