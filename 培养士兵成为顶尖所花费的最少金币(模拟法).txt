@@ -1,0 +1,30 @@
+#include<stdio.h>
+int main(){
+	int i,j,k;
+	long long max=0,final_cost=0,sum;
+	long long n,S;//n表示士兵的数量，S表示进行一次组团训练所需的金币数
+	scanf("%lld %lld",&n,&S);
+	long long p[n+1],c[n+1];//p是进行一次训练的金币成本，c是成为顶尖的训练次数 
+	for(i=1;i<=n;i++){
+		scanf("%lld %lld",&p[i],&c[i]);
+	}
+	for(i=1;i<=n;i++){
+		if(c[i]>max) max=c[i];
+	}
+	while(max){
+		sum=0;
+		for(j=1;j<=n;j++){
+			if(c[j]>0) {
+				sum+=p[j];
+				c[j]--;
+			}
+		}
+		if(sum>S) final_cost+=S;
+		else {
+			final_cost+=sum;
+		}
+		max--;
+	}
+	printf("%lld",final_cost);
+	return 0;
+}
