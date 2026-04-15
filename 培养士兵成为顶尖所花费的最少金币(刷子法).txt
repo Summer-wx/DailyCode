@@ -1,0 +1,52 @@
+//O(n log n)
+#include <stdio.h>
+#include <stdlib.h>
+typedef long long LL;
+
+typedef struct {
+    LL p;
+    LL c;
+} node;
+
+int cmp(const void *a, const void *b) {
+    node *pa = (node *)a;
+    node *pb = (node *)b;
+    if (pa->c > pb->c) return 1;
+    if (pa->c < pb->c) return -1;
+    return 0;
+}
+
+int main() {
+    LL n, s;
+    int i; 
+    scanf("%lld %lld", &n, &s);
+    
+    node *a = (node *)malloc((n + 1) * sizeof(node));
+    LL total = 0;  // 当前所有未毕业士兵进行一次训练的总成本
+    LL tm = 0;     // 已经进行过的集体训练次数（刷子）
+    LL ans = 0;    // 总花费
+    
+    for (i = 1; i <= n; i++) {
+        scanf("%lld %lld", &a[i].p, &a[i].c);
+        total += a[i].p;
+    }
+    
+    // 按训练次数从小到大排序
+    qsort(a + 1, n, sizeof(node), cmp);
+    
+    for (i = 1; i <= n; i++) {
+        if (total >= s) {
+            // 组团更划算：集体训练直到这批士兵毕业
+            ans += s * (a[i].c - tm);
+            tm = a[i].c;  // 更新刷子
+        } else {
+            // 逐个训练更划算
+            ans += a[i].p * (a[i].c - tm);
+        }
+        // 当前士兵毕业，从 total 中移除他的训练成本
+        total -= a[i].p;
+    }
+    printf("%lld\n", ans);   
+    free(a);
+    return 0;
+}
