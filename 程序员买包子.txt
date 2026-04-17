@@ -1,0 +1,15 @@
+#include<stdio.h>
+/*在一行中输出结论，格式为：
+如果 K=N，输出 mei you mai X de；
+如果 K=M，输出 kan dao le mai X de；
+否则输出 wang le zhao mai X de.
+其中 X 是输入中给定的字符串 X。*/
+int n,m,k;
+char x[100]; 
+int main(){
+	scanf("%d %s %d %d",&n,&x,&m,&k);
+	if(n==k) printf("mei you mai %s de",x);
+	else if(m==k) printf("kan dao le mai %s de",x);
+    else printf("wang le zhao mai %s de",x);
+	return 0;
+}
