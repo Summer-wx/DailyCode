@@ -1,0 +1,26 @@
+#include<stdio.h>
+int n,m;
+long long a[1005][3];
+int arr[1005];
+int main(){
+	int x=0,y=0;
+	int i,j,m1,n1;
+    scanf("%d",&n);
+    n1=n;
+    while(n1--){
+    	scanf("%lld %lld %lld",&a[x][0],&a[x][1],&a[x][2]);
+    	x++;
+	}
+	scanf("%d",&m);
+	m1=m;
+	while(m1--){
+		scanf("%d",&arr[y]);
+		y++;
+	}
+	for(i=0;i<m;i++){
+		for(j=0;j<n;j++){
+			if(a[j][1]==arr[i]) printf("%lld %lld\n",a[j][0],a[j][2]);
+		}
+	}
+    return 0;
+}
