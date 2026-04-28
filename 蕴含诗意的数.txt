@@ -1,0 +1,17 @@
+#include<stdio.h>
+/*如果一个数可以被两个以上连续的正整数相加表示，则称其蕴含诗意
+如6=1+2+3 7=3+4
+输入n个数，输出这一堆数中要删除几个不蕴含诗意的数*/
+int main(){
+	long long n,res=0;
+	scanf("%lld",&n);
+	while(n--){
+		long long m;
+		scanf("%lld",&m);
+		while(m%2==1 && m>1){
+			m/=2;
+		}
+		if(m==1) res++;
+	}
+	printf("%lld",res);
+}
